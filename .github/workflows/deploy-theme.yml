@@ -21,5 +21,5 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ${{ secrets.THEME_DIR }} /var/www/vsevo.ru/wp-content/themes/my-theme
+            cd ${{ secrets.THEME_DIR }}
             git pull origin main
