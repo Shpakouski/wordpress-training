@@ -1,0 +1,31 @@
+# Ignore WordPress core files
+/wp-content/
+/wp-includes/
+/wp-admin/
+*.log
+*.sql
+*.sqlite
+
+# Ignore dependencies
+/node_modules/
+/vendor/
+
+# Ignore environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore IDE files
+.idea/
+*.sublime-project
+*.vscode/
+
+# Ignore backups
+*.bak
+*.tmp
+
+# Ignore WordPress-specific files
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
