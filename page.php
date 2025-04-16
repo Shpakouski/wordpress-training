@@ -3,15 +3,13 @@
         <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
                 <article <?php post_class(); ?>>
-                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <h1><?php the_title(); ?></h1>
                     <div class="entry-content">
-                        <?php the_excerpt(); ?>
+                        <?php the_content(); ?>
+                        <?php edit_post_link(__('Редактировать', 'my-theme'), '<p>', '</p>'); ?>
                     </div>
                 </article>
             <?php endwhile; ?>
-            <?php the_posts_pagination(); ?>
-        <?php else : ?>
-            <p><?php esc_html_e('Записей нет.', 'my-theme'); ?></p>
         <?php endif; ?>
     </main>
 <?php get_sidebar(); ?>

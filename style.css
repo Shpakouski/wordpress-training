@@ -1,0 +1,23 @@
+/*
+Theme Name: Wordpress Training
+Author: Uladzimir
+Version: 1.0
+Text Domain: wordpress-training
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.entry-content {
+    margin: 20px 0;
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.wp-block-embed {
+    max-width: 100%;
+}

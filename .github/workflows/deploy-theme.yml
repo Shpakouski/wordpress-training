@@ -7,14 +7,20 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Debug
-        run: echo "Deploying to ${{ secrets.HOST }}:${secrets.THEME_DIR }}"
+      - name: Debug environment
+        run: |
+          echo "Host: ${{ secrets.HOST }}"
+          echo "Username: ${{ secrets.USERNAME }}"
+          echo "Port: ${{ secrets.PORT }}"
+          echo "Theme dir: ${{ secrets.THEME_DIR }}"
+          echo "Checking SSH key..."
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-keygen -l -f /dev/stdin || echo "Invalid SSH key"
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.0
@@ -24,7 +30,11 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ${{ secrets.THEME_DIR }} || { echo "Directory not found"; exit 1; }
+            if [ ! -d "${{ secrets.THEME_DIR }}" ]; then
+              echo "Directory ${{ secrets.THEME_DIR }} does not exist"
+              exit 1
+            fi
+            cd ${{ secrets.THEME_DIR }}
             git fetch --all
             git reset --hard origin/main
             git pull origin main
